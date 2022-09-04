@@ -1,26 +1,31 @@
 package Characters;
 
+import java.util.List;
 import java.util.Random;
 
 /** Класс Колдун */
 public class Sorcerer extends BaseHero{
 
-    /**
-     * Конструктор создания персонажа.
-     * @param name Имя персонажа заданного пользователем.
-     */
-    public Sorcerer(String name) {
-        super.name = name;
+    /** Конструктор создания персонажа */
+    public Sorcerer(List<BaseHero> side, int x, int y) {
+        super(side);
+        this.name = "Sorcerer";
+        this.attack = 17;
+        this.defence = 12;
+        this.shotsFired = 0;
+        this.damage = new Vector2(-5.0F, -5.0F);
+        this.crntHeals = this.health = 30;
+        this.speed = 9;
+        this.delivery = false;
+        this.magic = true;
+        this.status = "stand";
+        this.position = new Vector2((float)x, (float)y);
+    }
 
-        super.attack = 17;
-        super.protection = 12;
-        super.shotsFired = 0;
-        super.damage = new int[]{-5, -5, 0};
-        super.health = 30;
-        super.speed = 9;
-        super.delivery = false;
-        super.magic = true;
+    public boolean status() {return this.status.equals("active");}
 
-        damage[2] = new Random().nextInt(damage[0],damage[1] + 1);
+    public void step() {
+        Random rnd = new Random();
+        list.get( rnd.nextInt( list.size() ) ).health -= damage.x;
     }
 }
