@@ -1,26 +1,28 @@
 package Characters;
 
-import java.util.Random;
+import java.util.List;
 
 /** Класс Копейщик */
 public class Spearman extends BaseHero{
 
-    /**
-     * Конструктор создания персонажа.
-     * @param name Имя персонажа заданного пользователем.
-     */
-    public Spearman(String name) {
-        super.name = name;
+    /** Конструктор создания персонажа */
+    public Spearman(List<BaseHero> side, int x, int y) {
+        super(side);
+        this.name = "Spearman";
+        this.attack = 4;
+        this.defence = 5;
+        this.shotsFired = 0;
+        this.damage = new Vector2(1.0F, 3.0F);
+        this.crntHeals = this.health = 10;
+        this.speed = 4;
+        this.delivery = false;
+        this.magic = false;
+        this.status = "stand";
+        this.position = new Vector2((float)x, (float)y);
+    }
 
-        super.attack = 4;
-        super.protection = 5;
-        super.shotsFired = 0;
-        super.damage = new int[]{1, 3, 0};
-        super.health = 10;
-        super.speed = 4;
-        super.delivery = false;
-        super.magic = false;
+    public boolean status() {return this.status.equals("active");}
 
-        damage[2] = new Random().nextInt(damage[0],damage[1] + 1);
+    public void step() {
     }
 }
