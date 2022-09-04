@@ -1,26 +1,27 @@
 package Characters;
 
-import java.util.Random;
+import java.util.List;
 
 /** Класс Крестьянин */
 public class Peasant extends BaseHero{
 
-    /**
-     * Конструктор создания персонажа.
-     * @param name Имя персонажа заданного пользователем.
-     */
-    public Peasant(String name) {
-        super.name = name;
-
-        super.attack = 1;
-        super.protection = 1;
-        super.shotsFired = 0;
-        super.damage = new int[]{1, 1, 0};
-        super.health = 1;
-        super.speed = 3;
-        super.delivery = true;
-        super.magic = false;
-
-        damage[2] = new Random().nextInt(damage[0],damage[1] + 1);
+    /** Конструктор создания персонажа */
+    public Peasant(List<BaseHero> side, int x, int y) {
+        super(side);
+        this.name = "Peasant";
+        this.attack = 1;
+        this.defence = 1;
+        this.shotsFired = 0;
+        this.damage = new Vector2(1.0F, 1.0F);
+        this.crntHeals = this.health = 1;
+        this.speed = 3;
+        this.delivery = true;
+        this.magic = false;
+        this.status = "stand";
+        this.position = new Vector2((float)x, (float)y);
     }
+
+    public boolean status() {return this.status.equals("active");}
+
+    public void step() {}
 }
