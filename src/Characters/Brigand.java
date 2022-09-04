@@ -1,26 +1,27 @@
 package Characters;
 
-import java.util.Random;
+import java.util.List;
 
 /** Класс Разбойник */
-public class Robber extends BaseHero{
+public class Brigand extends BaseHero{
 
-    /**
-     * Конструктор создания персонажа.
-     * @param name Имя персонажа заданного пользователем.
-     */
-    public Robber(String name) {
-        super.name = name;
-
-        super.attack = 8;
-        super.protection = 3;
-        super.shotsFired = 0;
-        super.damage = new int[]{2, 4, 0};
-        super.health = 10;
-        super.speed = 6;
-        super.delivery = false;
-        super.magic = false;
-
-        damage[2] = new Random().nextInt(damage[0],damage[1] + 1);
+    /** Конструктор создания персонажа */
+    public Brigand(List<BaseHero> side, int x, int y) {
+        super(side);
+        this.name = "Brigand";
+        this.attack = 8;
+        this.defence = 3;
+        this.shotsFired = 0;
+        this.damage = new Vector2(2.0F, 4.0F);
+        this.crntHeals = health = 10;
+        this.speed = 6;
+        this.delivery = false;
+        this.magic = false;
+        this.status = "stand";
+        this.position = new Vector2((float)x, (float)y);
     }
+
+    public boolean status() {return status.equals("active");}
+
+    public void step() {}
 }
