@@ -1,26 +1,27 @@
 package Characters;
 
-import java.util.Random;
+import java.util.List;
 
 /** Класс Снайпер*/
 public class Sniper extends BaseHero{
 
-    /**
-     * Конструктор создания персонажа.
-     * @param name Имя персонажа заданного пользователем.
-     */
-    public Sniper(String name) {
-        super.name = name;
-
-        super.attack = 12;
-        super.protection = 10;
-        super.shotsFired = 32;
-        super.damage = new int[]{8, 10, 0};
-        super.health = 15;
-        super.speed = 9;
-        super.delivery = false;
-        super.magic = false;
-
-        damage[2] = new Random().nextInt(damage[0],damage[1] + 1);
+    /** Конструктор создания персонажа */
+    public Sniper(List<BaseHero> side, int x, int y) {
+        super(side);
+        this.name = "Sniper";
+        this.attack = 12;
+        this.defence = 10;
+        this.shotsFired = 32;
+        this.damage = new Vector2(8.0F, 10.0F);
+        this.crntHeals = this.health = 15;
+        this.speed = 9;
+        this.delivery = false;
+        this.magic = false;
+        this.status = "stand";
+        this.position = new Vector2((float)x, (float)y);
     }
+
+    public boolean status() {return this.status.equals("active");}
+
+    public void step() {}
 }
