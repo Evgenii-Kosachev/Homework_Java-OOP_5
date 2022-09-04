@@ -2,27 +2,80 @@ import Characters.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Program {
     public static void main(String[] args) {
-        BaseHero hero1 = new Crossbowman("Hero1");
-        BaseHero hero2 = new Peasant("Hero2");
-        BaseHero hero3 = new Monk("Hero3");
-        BaseHero hero4 = new Sniper("Hero4");
-        BaseHero hero5 = new Sorcerer("Hero5");
-        BaseHero hero6 = new Spearman("Hero6");
-        BaseHero hero7 = new Robber("Hero7");
+        int step = 1;
+        List<BaseHero> darkSide = new ArrayList<BaseHero>();
+        List<BaseHero> whiteSide = new ArrayList<BaseHero>();
+
+        Random rnd = new Random();
+        for (int i = 0; i < 10; i++) {
+            switch (rnd.nextInt(4)){
+                case 0:
+                    darkSide.add(new Sorcerer(darkSide, 0,0));
+                    break;
+                case 1:
+                    darkSide.add(new Brigand(darkSide, 0,0));
+                    break;
+                case 2:
+                    darkSide.add(new Crossbowman(darkSide, 0,0));
+                    break;
+                default:
+                    darkSide.add(new Peasant(darkSide, 0,0));
+            }
+        }
 
 
-        List<BaseHero> Battle = new ArrayList<>();
-        Battle.add(hero1);
-        Battle.add(hero2);
+        for (int i = 0; i < 10; i++) {
+            switch (rnd.nextInt(4)){
+                case 0:
+                    whiteSide.add(new Monk(darkSide, 0,0));
+                    break;
+                case 1:
+                    whiteSide.add(new Spearman(darkSide, 0,0));
+                    break;
+                case 2:
+                    whiteSide.add(new Sniper(darkSide, 0,0));
+                    break;
+                default:
+                    whiteSide.add(new Peasant(darkSide, 0,0));
+            }
+        }
 
-        for (BaseHero baseHero : Battle) {System.out.println(baseHero.getInfo());}
-        System.out.println();
 
-        Battle.get(0).hit(Battle.get(1));
+        if (step == 1 ){
+            System.out.println("First step");
+        } else {
+            System.out.println("Step:" + Integer.toString(step));
+        }
+        System.out.println("--------------------------------------------");
+        System.out.println("Dark side\t\t\t\t\t\t\tWhite side");
+        for (int i = 0; i < darkSide.size(); i++) {
+            if (darkSide.get(i).getInfo().length() > 27) {
+                System.out.println(darkSide.get(i).getInfo() + "\t:\t" + whiteSide.get(i).getInfo());
+            } else {
+                System.out.println(darkSide.get(i).getInfo() + "\t\t:\t" + whiteSide.get(i).getInfo());
+            }
+        }
 
-        for (BaseHero baseHero : Battle) {System.out.println(baseHero.getInfo());}
+        Scanner in = new Scanner(System.in);
+        while (true) {
+            String txt = in.nextLine();
+            if (txt.equals("next")){
+                for (int i = 0; i < darkSide.size(); i++) {
+                    darkSide.get(i).step();
+                    whiteSide.get(i).step();
+                    if (darkSide.get(i).getInfo().length() > 27) {
+                        System.out.println(darkSide.get(i).getInfo() + "\t:\t" + whiteSide.get(i).getInfo());
+                    } else {
+                        System.out.println(darkSide.get(i).getInfo() + "\t\t:\t" + whiteSide.get(i).getInfo());
+                    }
+                }
+            }
+            if(txt.equals("quite")) break;
+        }
     }
 }
