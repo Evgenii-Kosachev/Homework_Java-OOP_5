@@ -1,26 +1,28 @@
 package Characters;
 
-import java.util.Random;
+import java.util.List;
 
 /** Класс Арбалетчик */
 public class Crossbowman extends BaseHero{
 
-    /**
-     * Конструктор создания персонажа.
-     * @param name Имя персонажа заданного пользователем.
-     */
-    public Crossbowman(String name) {
-        super.name = name;
+    /** Конструктор создания персонажа */
+    public Crossbowman(List<BaseHero> side, int x, int y) {
+        super(side);
+        this.name = "Crossbowman";
+        this.attack = 6;
+        this.defence = 3;
+        this.shotsFired = 16;
+        this.damage = new Vector2(2.0F, 3.0F);
+        this.crntHeals = health = 10;
+        this.speed = 4;
+        this.delivery = false;
+        this.magic = false;
+        this.status = "stand";
+        this.position = new Vector2((float)x, (float)y);
+    }
 
-        super.attack = 6;
-        super.protection = 3;
-        super.shotsFired = 16;
-        super.damage = new int[]{2, 3, 0};
-        super.health = 10;
-        super.speed = 4;
-        super.delivery = false;
-        super.magic = false;
+    public boolean status() {return status.equals("active");}
 
-        damage[2] = new Random().nextInt(damage[0],damage[1] + 1);
+    public void step() {
     }
 }
