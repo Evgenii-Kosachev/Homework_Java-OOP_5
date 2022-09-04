@@ -1,26 +1,32 @@
 package Characters;
 
+import java.util.List;
 import java.util.Random;
 
 /** Класс Монах */
 public class Monk extends BaseHero{
 
-    /**
-     * Конструктор создания персонажа.
-     * @param name Имя персонажа заданного пользователем.
-     */
-    public Monk(String name) {
-        super.name = name;
+    /** Конструктор создания персонажа */
+    public Monk(List<BaseHero> side, int x, int y) {
+        super(side);
+        this.name = "Monk";
+        this.attack = 12;
+        this.defence = 7;
+        this.shotsFired = 0;
+        this.damage = new Vector2(-4.0F, -4.0F);
+        this.crntHeals = this.health = 30;
+        this.speed = 5;
+        this.delivery = false;
+        this.magic = true;
+        this.status = "stand";
+        this.position = new Vector2((float)x, (float)y);
+    }
 
-        super.attack = 12;
-        super.protection = 7;
-        super.shotsFired = 0;
-        super.damage = new int[]{-4, -4, 0};
-        super.health = 30;
-        super.speed = 5;
-        super.delivery = false;
-        super.magic = true;
+    public boolean status() {return this.status.equals("active");}
 
-        damage[2] = new Random().nextInt(damage[0],damage[1] + 1);
+    @Override
+    public void step() {
+        Random rnd = new Random();
+        list.get( rnd.nextInt( list.size() ) ).health -= damage.x;
     }
 }
