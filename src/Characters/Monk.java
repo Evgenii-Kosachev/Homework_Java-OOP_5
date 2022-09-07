@@ -1,7 +1,6 @@
 package Characters;
 
 import java.util.List;
-import java.util.Random;
 
 /** Класс Монах */
 public class Monk extends BaseHero{
@@ -12,21 +11,27 @@ public class Monk extends BaseHero{
         this.name = "Monk";
         this.attack = 12;
         this.defence = 7;
-        this.shotsFired = 0;
-        this.damage = new Vector2(-4.0F, -4.0F);
+        this.crntShotsFired = shotsFired = 0;
+        this.damage = new Vector2(-4, -4);
         this.crntHeals = this.health = 30;
         this.speed = 5;
         this.delivery = false;
         this.magic = true;
         this.status = "stand";
-        this.position = new Vector2((float)x, (float)y);
+        this.position = new Vector2(x, y);
     }
 
     public boolean status() {return this.status.equals("active");}
 
     @Override
     public void step() {
-        Random rnd = new Random();
-        list.get( rnd.nextInt( list.size() ) ).health -= damage.x;
+        for (BaseHero bh: super.list) {
+            if (!bh.status.equals("Die.") && bh.crntHeals < bh.health) {
+                bh.crntHeals += this.damage.x * -1;
+                if (bh.crntHeals > bh.health) bh.crntHeals = bh.health;
+                this.status = String.format("(%s:+%s)", list.indexOf(bh) + 1, this.damage.x * -1);
+                break;
+            } else this.status = "stand";
+        }
     }
 }
