@@ -15,16 +15,16 @@ public class Program {
         for (int i = 0; i < 10; i++) {
             switch (rnd.nextInt(4)){
                 case 0:
-                    darkSide.add(new Sorcerer(darkSide, 0,0));
+                    darkSide.add(new Sorcerer(darkSide, i + 1,1));
                     break;
                 case 1:
-                    darkSide.add(new Brigand(darkSide, 0,0));
+                    darkSide.add(new Brigand(whiteSide, i + 1,1));
                     break;
                 case 2:
-                    darkSide.add(new Crossbowman(darkSide, 0,0));
+                    darkSide.add(new Crossbowman(whiteSide, i + 1,1));
                     break;
                 default:
-                    darkSide.add(new Peasant(darkSide, 0,0));
+                    darkSide.add(new Peasant(darkSide, i + 1,1));
             }
         }
 
@@ -32,32 +32,32 @@ public class Program {
         for (int i = 0; i < 10; i++) {
             switch (rnd.nextInt(4)){
                 case 0:
-                    whiteSide.add(new Monk(darkSide, 0,0));
+                    whiteSide.add(new Monk(whiteSide, i + 1,10));
                     break;
                 case 1:
-                    whiteSide.add(new Spearman(darkSide, 0,0));
+                    whiteSide.add(new Spearman(darkSide, i + 1,10));
                     break;
                 case 2:
-                    whiteSide.add(new Sniper(darkSide, 0,0));
+                    whiteSide.add(new Sniper(darkSide, i + 1,10));
                     break;
                 default:
-                    whiteSide.add(new Peasant(darkSide, 0,0));
+                    whiteSide.add(new Peasant(whiteSide, i + 1,10));
             }
         }
 
 
-        if (step == 1 ){
+        if (step == 1){
             System.out.println("First step");
         } else {
             System.out.println("Step:" + Integer.toString(step));
         }
         System.out.println("--------------------------------------------");
-        System.out.println("Dark side\t\t\t\t\t\t\tWhite side");
+        System.out.println("Dark side\t\t\t\t\t\t\t\tWhite side");
         for (int i = 0; i < darkSide.size(); i++) {
-            if (darkSide.get(i).getInfo().length() > 27) {
-                System.out.println(darkSide.get(i).getInfo() + "\t:\t" + whiteSide.get(i).getInfo());
+            if (darkSide.get(i).getInfo().length() > 28) {
+                System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t:\t" + "#"+ (i + 1) +" "+ whiteSide.get(i).getInfo());
             } else {
-                System.out.println(darkSide.get(i).getInfo() + "\t\t:\t" + whiteSide.get(i).getInfo());
+                System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t\t:\t" + "#"+ (i + 1) +" "+ whiteSide.get(i).getInfo());
             }
         }
 
@@ -68,14 +68,17 @@ public class Program {
                 for (int i = 0; i < darkSide.size(); i++) {
                     darkSide.get(i).step();
                     whiteSide.get(i).step();
-                    if (darkSide.get(i).getInfo().length() > 27) {
-                        System.out.println(darkSide.get(i).getInfo() + "\t:\t" + whiteSide.get(i).getInfo());
+                    if (darkSide.get(i).getInfo().length() > 28) {
+                        System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t:\t" + "#"+ (i + 1) +" "+ whiteSide.get(i).getInfo());
                     } else {
-                        System.out.println(darkSide.get(i).getInfo() + "\t\t:\t" + whiteSide.get(i).getInfo());
+                        System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t\t:\t" + "#"+ (i + 1) +" "+ whiteSide.get(i).getInfo());
                     }
                 }
             }
             if(txt.equals("quite")) break;
         }
+
+        darkSide.forEach(Actions::step);
+        whiteSide.forEach(Actions::step);
     }
 }
