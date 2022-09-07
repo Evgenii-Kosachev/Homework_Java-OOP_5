@@ -5,16 +5,17 @@ import java.util.List;
 /** Базовый класс */
 public abstract class BaseHero implements Actions {
     protected String name;
+
     protected int attack;
-    protected Vector2 damage;
     protected int defence;
-    protected int shotsFired;
-    protected int health;
-    protected int crntHeals;
+    protected int shotsFired;  protected int crntShotsFired;
+    protected Vector2 damage;
+    protected int health;      protected int crntHeals;
     protected int speed;
-    protected String status;
     protected boolean delivery;
     protected boolean magic = true;
+
+    protected String status;
     protected Vector2 position;
     protected List<BaseHero> list;
 
@@ -27,6 +28,12 @@ public abstract class BaseHero implements Actions {
 
     @Override
     public String getInfo() {
-        return this.name + " H:" + this.crntHeals + " D:" + this.defence + " A:" + this.attack + " " + this.status;
+        if(this.crntHeals > 0) {
+            return this.name + " H:" + this.crntHeals + " D:" + this.defence + " A:" + this.attack + " " + this.status;
+        }
+        else {
+            this.status = "Die.";
+            return String.format("<<< The %s is dead >>>", this.name);
+        }
     }
 }
