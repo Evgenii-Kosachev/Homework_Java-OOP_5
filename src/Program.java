@@ -55,9 +55,9 @@ public class Program {
         System.out.println("Dark side\t\t\t\t\t\t\t\tWhite side");
         for (int i = 0; i < darkSide.size(); i++) {
             if (darkSide.get(i).getInfo().length() > 28) {
-                System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t:\t" + "#"+ (i + 1) +" "+ whiteSide.get(i).getInfo());
+                System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t:\t" + "#"+ (i + 1) + " " + whiteSide.get(i).getInfo());
             } else {
-                System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t\t:\t" + "#"+ (i + 1) +" "+ whiteSide.get(i).getInfo());
+                System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t\t:\t" + "#"+ (i + 1) + " " + whiteSide.get(i).getInfo());
             }
         }
 
@@ -69,9 +69,9 @@ public class Program {
                     darkSide.get(i).step();
                     whiteSide.get(i).step();
                     if (darkSide.get(i).getInfo().length() > 28) {
-                        System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t:\t" + "#"+ (i + 1) +" "+ whiteSide.get(i).getInfo());
+                        System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t:\t" + "#"+ (i + 1) + " " + whiteSide.get(i).getInfo());
                     } else {
-                        System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t\t:\t" + "#"+ (i + 1) +" "+ whiteSide.get(i).getInfo());
+                        System.out.println("#"+ (i + 1) +" "+ darkSide.get(i).getInfo() + "\t\t:\t" + "#"+ (i + 1) + " " + whiteSide.get(i).getInfo());
                     }
                 }
             }
