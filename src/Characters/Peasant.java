@@ -9,11 +9,11 @@ public class Peasant extends BaseHero{
     public Peasant(List<BaseHero> side, int x, int y) {
         super(side);
         this.name = "Peasant";
-        this.attack = 1;
-        this.defence = 1;
+        this.attack = 5;
+        this.defence = 4;
         this.crntShotsFired = shotsFired = 0;
         this.damage = new Vector2(1, 1);
-        this.crntHeals = this.health = 1;
+        this.crntHeals = this.health = 6;
         this.speed = 3;
         this.delivery = true;
         this.magic = false;
