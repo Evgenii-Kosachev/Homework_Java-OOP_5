@@ -30,7 +30,6 @@ public abstract class BaseHero implements Actions {
     @Override
     public String getInfo() {
         if(this.crntHeals > 0) {
-//            return this.name + " H:" + this.crntHeals + " D:" + this.defence + " A:" + this.attack + " " + this.status;
             return "[x:" + this.position.x + ", y:" + this.position.y + "] " + this.name + " H:" + this.crntHeals + " "  + this.status;
         }
         else {
@@ -56,12 +55,4 @@ public abstract class BaseHero implements Actions {
         }
         return new Vector2(out, dist);
     }
-
-
-
-
-
-
-
-
 }
